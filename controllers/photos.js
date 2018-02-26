@@ -39,11 +39,18 @@ function updateRoute(req, res) {
     .then(photo => res.redirect(`/photos/${photo._id}`));
 }
 
+function deleteRoute(req, res) {
+  Photo.findById(req.params.id)
+    .then(photo => photo.remove())
+    .then(() => res.redirect('/photos'));
+}
+
 module.exports = {
   index: indexRoute,
   new: newRoute,
   create: createRoute,
   show: showRoute,
   edit: editRoute,
-  update: updateRoute
+  update: updateRoute,
+  delete: deleteRoute
 };
