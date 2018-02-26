@@ -2,7 +2,8 @@ const Photo = require('../models/photo');
 
 function indexRoute(req, res) {
   Photo.find()
-    .then(photos => res.render('photos/index', { photos }));
+    .then(photos => res.render('photos/index', { photos }))
+    .catch(err => console.log(err));
 }
 
 function newRoute(req, res) {
@@ -10,13 +11,24 @@ function newRoute(req, res) {
 }
 
 function createRoute(req, res, next) {
-  Photo.create()
+  console.log(req.body);
+  Photo.create(req.body)
     .then(() => res.redirect('/photos'))
+    .catch(next);
+}
+
+function showRoute(req, res, next) {
+  Photo.findById(req.params.id)
+    .then(photo => {
+      console.log(photo);
+      res.render('photos/show', { photo });
+    })
     .catch(next);
 }
 
 module.exports = {
   index: indexRoute,
   new: newRoute,
-  create: createRoute
+  create: createRoute,
+  show: showRoute
 };
