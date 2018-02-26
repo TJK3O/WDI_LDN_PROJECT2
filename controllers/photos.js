@@ -20,15 +20,30 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   Photo.findById(req.params.id)
     .then(photo => {
-      console.log(photo);
       res.render('photos/show', { photo });
     })
     .catch(next);
+}
+
+function editRoute(req, res) {
+  Photo.findById(req.params.id)
+    .then(photo => {
+      res.render('photos/edit', { photo });
+    });
+}
+
+function updateRoute(req, res) {
+  Photo.findById(req.params.id)
+    .then(photo => Object.assign(photo, req.body))
+    .then(photo => photo.save())
+    .then(photo => res.redirect(`/photos/${photo._id}`));
 }
 
 module.exports = {
   index: indexRoute,
   new: newRoute,
   create: createRoute,
-  show: showRoute
+  show: showRoute,
+  edit: editRoute,
+  update: updateRoute
 };

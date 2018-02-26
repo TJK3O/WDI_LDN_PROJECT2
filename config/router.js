@@ -11,6 +11,10 @@ router.route('/photos/new')
   .get(photos.new);
 
 router.route('/photos/:id')
-  .get(photos.show);
+  .get(photos.show)
+  .put(photos.update);
+
+router.route('/photos/:id/edit')
+  .get(photos.edit);
 
 module.exports = router;
