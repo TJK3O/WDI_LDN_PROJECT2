@@ -21,6 +21,12 @@ router.route('/photos/:id')
 router.route('/photos/:id/edit')
   .get(secureRoute, photos.edit);
 
+router.route('/photos/:id/comments')
+  .post(secureRoute, photos.commentsCreate);
+
+router.route('/photos/:id/comments/:commentId')
+  .delete(secureRoute, photos.commentsDelete);
+
 router.route('/register')
   .get(registrations.new)
   .post(registrations.create);

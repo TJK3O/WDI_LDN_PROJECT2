@@ -1,12 +1,31 @@
 <img src="<%= photo.image %>" alt="<%= photo.description %>">
 <h1><%= photo.description %></h1>
+<ul>
+  <% photo.comments.forEach(comment => { %>
+    <li>
+      <%= comment.content %>
+      <% if(comment.isOwnedBy(locals.currentUser)) { %>
+        <form method="POST" action="/photos/<%= photo._id %>/comments/<%= comment._id %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <button>Delete</button>
+        </form>
+      <% } %>
+    </li>
+  <% }) %>
+</ul>
 
 <% if(locals.isAuthenticated) { %>
-<a href="/photos/<%= photo._id %>/edit">Edit</a>
+  <a href="/photos/<%= photo._id %>/edit">Edit</a>
 
 
-<form method="POST" action="/photos/<%= photo._id %>">
-  <input type="hidden" name="_method" value="DELETE">
-  <button>Delete</button>
-</form>
+  <form method="POST" action="/photos/<%= photo._id %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <button>Delete</button>
+  </form>
+
+  <form method="POST" action="/photos/<%= photo._id %>/comments">
+    <textarea name="content" required></textarea>
+    <button>Submit</button>
+  </form>
+
 <% } %>

@@ -19,6 +19,7 @@ function createRoute(req, res, next) {
 
 function showRoute(req, res, next) {
   Photo.findById(req.params.id)
+    .populate('comments.user')
     .then(photo => {
       res.render('photos/show', { photo });
     })
@@ -45,6 +46,29 @@ function deleteRoute(req, res) {
     .then(() => res.redirect('/photos'));
 }
 
+function commentsCreateRoute(req, res, next) {
+  req.body.user = req.currentUser;
+
+  Photo.findById(req.params.id)
+    .then(photo => {
+      photo.comments.push(req.body);
+      return photo.save();
+    })
+    .then(photo => res.redirect(`/photos/${photo._id}`))
+    .catch(next);
+}
+
+function commentsDeleteRoute(req, res, next) {
+  Photo.findById(req.params.id)
+    .then(photo => {
+      const comment = photo.comments.id(req.params.commentId);
+      comment.remove();
+      return photo.save();
+    })
+    .then(photo => res.redirect(`/photos/${photo._id}`))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   new: newRoute,
@@ -52,5 +76,7 @@ module.exports = {
   show: showRoute,
   edit: editRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  commentsCreate: commentsCreateRoute,
+  commentsDelete: commentsDeleteRoute
 };
