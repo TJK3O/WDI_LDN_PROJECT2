@@ -1,8 +1,10 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const expressSession = require('express-session');
 const router = require('./config/router');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const userAuth = require('./lib/userAuth');
 const app = express();
 const PORT = 8000;
 
@@ -25,6 +27,21 @@ app.use(methodOverride(req => {
   }
 }));
 
+app.use(expressSession({
+  secret: 'ejgnJNOIoinip[OKA@@]',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(userAuth);
+
 app.use(router);
+
+// global error handler
+app.use((err, req, res, next) => {
+  if(err.name === 'ValidationError') return res.render('pages/422');
+  res.render('pages/500', { err });
+  next(err);
+});
 
 app.listen(PORT, () => console.log(`Up and running on port ${PORT}`));

@@ -1,5 +1,7 @@
 <img src="<%= photo.image %>" alt="<%= photo.description %>">
 <h1><%= photo.description %></h1>
+
+<% if(locals.isAuthenticated) { %>
 <a href="/photos/<%= photo._id %>/edit">Edit</a>
 
 
@@ -7,3 +9,4 @@
   <input type="hidden" name="_method" value="DELETE">
   <button>Delete</button>
 </form>
+<% } %>
