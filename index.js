@@ -5,6 +5,7 @@ const router = require('./config/router');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const userAuth = require('./lib/userAuth');
+const flash = require('express-flash');
 const app = express();
 const PORT = 8000;
 
@@ -32,6 +33,8 @@ app.use(expressSession({
   resave: false,
   saveUninitialized: false
 }));
+
+app.use(flash());
 
 app.use(userAuth);
 

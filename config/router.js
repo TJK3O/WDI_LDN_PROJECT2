@@ -32,4 +32,6 @@ router.route('/login')
 router.route('/logout')
   .get(sessions.delete);
 
+router.all('/*', (req, res) => res.render('pages/404'));
+
 module.exports = router;
