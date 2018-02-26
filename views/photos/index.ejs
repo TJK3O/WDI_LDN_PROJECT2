@@ -1,0 +1,8 @@
+<div class="columns">
+  <% photos.forEach(photo => { %>
+    <div class="column">
+    <img src="<%= photo.image %>" />
+      <h2><%= photo.description %></h2>
+    </div>
+  <% }) %>
+</div>
