@@ -9,17 +9,35 @@
       <h1 class="title"><%= photo.description %></h1>
       <ul>
         <% photo.comments.forEach(comment => { %>
-          <li>
-          <%= comment.content %>
-          <% if(comment.isOwnedBy(locals.currentUser)) { %>
-            <form method="POST" action="/photos/<%= photo._id %>/comments/<%= comment._id %>">
-            <input type="hidden" name="_method" value="DELETE">
-            <button>Delete</button>
-            </form>
-            <% } %>
+          <div class="box">
+            <li>
+              <% if(comment.isOwnedBy(locals.currentUser)) { %>
+                <form method="POST" action="/photos/<%= photo._id %>/comments/<%= comment._id %>">
+                <input type="hidden" name="_method" value="DELETE">
+                <button>Delete</button>
+                </form>
+              <% } %>
+              <article class="media">
+                <div class="media-left">
+                  <figure class="image is-64x64">
+                    <img src="<%= comment.user.image %>" alt="Image">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <%= comment.content %>
+                    </p>
+                    <% if(comment.user) { %>
+                      <strong><%= comment.user.username %></strong>
+                    <% } %>
+                  </div>
+                </div>
+              </article>
             </li>
-            <% }) %>
-          </ul>
+          </div>
+        <% }) %>
+      </ul>
 
           <% if(locals.isAuthenticated) { %>
             <a href="/photos/<%= photo._id %>/edit" class="button is-primary">Edit</a>

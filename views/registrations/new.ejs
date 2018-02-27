@@ -9,6 +9,36 @@
       <input class="input" type="text" name="email" id="email">
     </div>
     <div class="field">
+      <label for="image">Image</label>
+      <input class="input" type="hidden" name="image" id="url-input">
+      <input type="BUTTON" value="Upload Image" id="pickWatermark" onclick="filestackUpload()">
+    </div>
+
+    <script>
+    const client = filestack.init("AathCQHBORnSzPBb8eXW6z");
+    let watermarkHandle = '';
+    let transformURL = "https://cdn.filestack.com/watermark=file:";
+    let fileUrl;
+
+    function filestackUpload() {
+      client.pick({
+        accept: 'image/*',
+        maxFiles:1,
+        transformations: { crop: { force: true, aspectRatio: 4/4  } }
+
+      }).then(function(result) {
+           let fileUrl = result.filesUploaded[0].url;
+           console.log(fileUrl);
+           $('#url-input').val(fileUrl);
+         });
+    };
+    </script>
+
+
+
+
+
+    <div class="field">
       <label for="password">Password</label>
       <input class="input" type="password" name="password" id="password">
     </div>
