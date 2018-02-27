@@ -84,8 +84,7 @@ function likesCreateRoute(req, res, next) {
 function likesDeleteRoute(req, res, next) {
   Photo.findById(req.params.id)
     .then(photo => {
-      const like = photo.likes.id(req.currentUser);
-      like.remove();
+      photo.likes = photo.likes.filter(userId => !userId.equals(req.currentUser._id));
       return photo.save();
     })
     .then(photo => res.redirect(`/photos/${photo._id}`))

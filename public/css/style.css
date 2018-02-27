@@ -6,3 +6,7 @@
 div.column {
   padding-bottom: 50px;
 }
+
+.like, .unlike {
+  display: hidden;
+}

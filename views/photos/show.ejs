@@ -53,14 +53,18 @@
             <button class="button is-primary">Submit</button>
             </form>
 
-            <form method="POST" action="/photos/<%= photo._id %>/likes">
-            <button class="button is-primary">Like</button>
-            </form>
+            <% if(photo.isLikedBy(locals.currentUser)) { %>
 
-            <form method="POST" action="/photos/<%= photo._id %>/likes/:like._id">
-            <input type="hidden" name="_method" value="DELETE">
-            <button class="button is-danger">Like</button>
-            </form>
+              <form method="POST" action="/photos/<%= photo._id %>/likes/:like._id">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="unlike button is-danger">Unlike</button>
+              </form>
+            <% } else { %>
+
+              <form method="POST" action="/photos/<%= photo._id %>/likes">
+                <button class="like button is-primary">Like</button>
+              </form>
+            <% } %>
 
             <% } %>
       <p>Number of likes: <strong><%= photo.likes.length %></strong></p>
