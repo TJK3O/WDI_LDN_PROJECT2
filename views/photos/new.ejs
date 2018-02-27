@@ -5,7 +5,7 @@
       <div class="control">
         <input id="url-input" class="input" name="image" type="text" placeholder="Image" required>
       </div>
-      <input type="BUTTON" value="Pick Watermark" id="pickWatermark" onclick="filestackUpload()">
+      <input type="BUTTON" value="Upload Image" id="pickWatermark" onclick="filestackUpload()">
 
 
 
@@ -16,20 +16,19 @@
       let transformURL = "https://cdn.filestack.com/watermark=file:";
       let fileUrl;
 
-      console.log(urlInput);
       function filestackUpload() {
         client.pick({
           accept: 'image/*',
           maxFiles:1,
+          transformations: { crop: { force: true, aspectRatio: 4/4  } }
+
         }).then(function(result) {
              let fileUrl = result.filesUploaded[0].url;
              console.log(fileUrl);
+             $('#url-input').val(fileUrl);
            });
       };
       </script>
-
-
-
 
     </div>
     <div class="field">

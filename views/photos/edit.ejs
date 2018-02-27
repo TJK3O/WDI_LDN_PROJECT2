@@ -1,20 +1,48 @@
-<form method="POST" action="/photos/<%= photo._id%>">
+<div class="container">
+  <form method="POST" action="/photos/<%= photo._id%>">
 
-  <input type="hidden" name="_method" value="PUT">
-  
-  <div class="field">
-    <label class="label">Image</label>
-    <div class="control">
-      <input class="input" name="image" type="text" placeholder="Image">
+    <input type="hidden" name="_method" value="PUT">
+
+    <div class="field">
+      <label class="label">Image</label>
+      <div class="control">
+        <input class="input" name="image" type="text" placeholder="Image">
+      </div>
+      <input type="BUTTON" value="Upload Image" id="pickWatermark" onclick="filestackUpload()">
+
+
+
+
+      <script>
+      const client = filestack.init("AathCQHBORnSzPBb8eXW6z");
+      let watermarkHandle = '';
+      let transformURL = "https://cdn.filestack.com/watermark=file:";
+      let fileUrl;
+
+      function filestackUpload() {
+        client.pick({
+          accept: 'image/*',
+          maxFiles:1,
+          transformations: { crop: { force: true, aspectRatio: 4/4  } }
+
+        }).then(function(result) {
+          let fileUrl = result.filesUploaded[0].url;
+          console.log(fileUrl);
+          $('#url-input').val(fileUrl);
+        });
+      };
+      </script>
+
+
     </div>
-  </div>
-  <div class="field">
-    <label class="label">Description</label>
-    <div class="control">
-      <input class="input" name="description" type="text" placeholder="Description">
+    <div class="field">
+      <label class="label">Description</label>
+      <div class="control">
+        <input class="input" name="description" type="text" placeholder="Description">
+      </div>
     </div>
-  </div>
-  <div class="control">
-    <button class="button is-primary">Submit</button>
-  </div>
-</form>
+    <div class="control">
+      <button class="button is-primary">Submit</button>
+    </div>
+  </form>  
+</div>
