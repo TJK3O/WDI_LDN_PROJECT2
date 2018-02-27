@@ -5,6 +5,10 @@ const commentSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.ObjectId, ref: 'User' }
 });
 
+const likeSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' }
+});
+
 commentSchema.methods.isOwnedBy = function(user) {
   return user && this.user && user._id.equals(this.user._id);
 };
@@ -12,7 +16,8 @@ commentSchema.methods.isOwnedBy = function(user) {
 const schema = new mongoose.Schema({
   image: String,
   description: String,
-  comments: [ commentSchema ]
+  comments: [ commentSchema ],
+  likes: [likeSchema]
 });
 
 module.exports = mongoose.model('Photo', schema);

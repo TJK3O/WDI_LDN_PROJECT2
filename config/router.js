@@ -27,6 +27,12 @@ router.route('/photos/:id/comments')
 router.route('/photos/:id/comments/:commentId')
   .delete(secureRoute, photos.commentsDelete);
 
+router.route('/photos/:id/likes')
+  .post(secureRoute, photos.likesCreate);
+
+router.route('/photos/:id/likes/:likeId')
+  .delete(secureRoute, photos.likesDelete);
+
 router.route('/register')
   .get(registrations.new)
   .post(registrations.create);

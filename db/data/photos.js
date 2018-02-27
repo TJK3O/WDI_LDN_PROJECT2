@@ -1,10 +1,13 @@
 module.exports = [{
-  image: 'http://www.fillmurray.com/200/200',
-  description: 'Bill Murray'
+  image: 'https://cdn.filestackcontent.com/VdPdsg9NTeuinuSnIxCT',
+  description: 'The Pine Woods'
 }, {
-  image: 'http://www.fillmurray.com/200/200',
-  description: 'Bill Murray 2'
+  image: 'https://cdn.filestackcontent.com/GVfDEBh4R5u0XHF9hggx',
+  description: 'Formby Beach'
 }, {
-  image: 'http://www.fillmurray.com/200/200',
-  description: 'Bill Murray 3'
+  image: 'https://cdn.filestackcontent.com/vVMYhY7SfSxCiPgP9KFc',
+  description: 'Albert Hall'
+}, {
+  image: 'https://cdn.filestackcontent.com/PfCC6UQTnyhaF1XeHwqa',
+  description: 'Summer Stroll'
 }];

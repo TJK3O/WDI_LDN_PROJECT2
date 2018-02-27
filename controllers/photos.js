@@ -69,6 +69,30 @@ function commentsDeleteRoute(req, res, next) {
     .catch(next);
 }
 
+function likesCreateRoute(req, res, next) {
+  req.body.user = req.currentUser;
+
+  Photo.findById(req.params.id)
+    .then(photo => {
+      photo.likes.push(req.currentUser);
+      return photo.save();
+    })
+    .then(photo => res.redirect(`/photos/${photo._id}`))
+    .catch(next);
+}
+
+function likesDeleteRoute(req, res, next) {
+  Photo.findById(req.params.id)
+    .then(photo => {
+      const like = photo.likes.id(req.currentUser);
+      like.remove();
+      return photo.save();
+    })
+    .then(photo => res.redirect(`/photos/${photo._id}`))
+    .catch(next);
+}
+
+
 module.exports = {
   index: indexRoute,
   new: newRoute,
@@ -78,5 +102,7 @@ module.exports = {
   update: updateRoute,
   delete: deleteRoute,
   commentsCreate: commentsCreateRoute,
-  commentsDelete: commentsDeleteRoute
+  commentsDelete: commentsDeleteRoute,
+  likesCreate: likesCreateRoute,
+  likesDelete: likesDeleteRoute
 };
