@@ -44,6 +44,13 @@ router.route('/login')
 router.route('/logout')
   .get(sessions.delete);
 
+router.route('/users/:id')
+  .get(registrations.show)
+  .put(secureRoute, registrations.update);
+
+router.route('/users/:id/edit')
+  .get(secureRoute, registrations.edit);
+
 router.all('/*', (req, res) => res.render('pages/404'));
 
 module.exports = router;

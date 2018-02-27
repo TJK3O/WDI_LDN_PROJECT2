@@ -1,6 +1,28 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <img class="avatar" src="<%= user.image %>" alt="user.username">
+        </div>
+        <div class="column is-three-quarters">
+          <h1 class="title">
+            <%= user.username %>
+            <%= user.bio %>
+            <% if(locals.isAuthenticated) { %>
+              <a href="/users/<%= locals.currentUser._id %>/edit">Edit Profile</a>
+            <% } %>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <main class="container">
   <div class="columns is-multiline">
-    <% photos.forEach(photo => { %>
+    <% user.photos.forEach(photo => { %>
       <div class="column is-one-quarter-desktop is-half-tablet">
         <a href ="/photos/<%= photo._id%>">
           <div class="card">

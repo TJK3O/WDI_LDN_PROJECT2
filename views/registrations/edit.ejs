@@ -1,13 +1,12 @@
-<div class="container">
-  <form method="POST" action="/photos/<%= photo._id%>">
+<h1>Edit profile</h1>
+<form method="POST" action="/users/<%= user._id%>">
 
-    <input type="hidden" name="_method" value="PUT">
+  <input type="hidden" name="_method" value="PUT">
 
-    <div class="field">
-      <label class="label">Image</label>
-      <div class="control">
-        <input id="url-input" class="input" name="image" type="hidden" placeholder="Image">
-      </div>
+  <div class="field">
+    <label class="label">Image</label>
+    <div class="control">
+      <input id="url-input" class="input" name="image" type="hidden" placeholder="Image">
       <input type="BUTTON" value="Upload Image" id="pickWatermark" onclick="filestackUpload()">
 
 
@@ -32,17 +31,13 @@
            });
       };
       </script>
-
-
-    </div>
-    <div class="field">
-      <label class="label">Description</label>
+      <div class="field">
+        <label for="bio">Bio</label>
+        <input class="textarea" type="text" name="bio" id="bio">
+      </div>
       <div class="control">
-        <input class="input" name="description" type="text" placeholder="Description" maxlength="20" required>
+        <button class="button is-primary">Submit</button>
       </div>
     </div>
-    <div class="control">
-      <button class="button is-primary">Submit</button>
-    </div>
-  </form>
-</div>
+  </div>
+</form>

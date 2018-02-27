@@ -7,6 +7,7 @@
     </div>
     <div class="column">
       <h1 class="title"><%= photo.description %></h1>
+      <h3>Uploaded by <%= photo.user.username %></h3>
       <ul>
         <% photo.comments.forEach(comment => { %>
           <div class="box">
@@ -20,7 +21,7 @@
               <article class="media">
                 <div class="media-left">
                   <figure class="image is-64x64">
-                    <img src="<%= comment.user.image %>" alt="Image">
+                    <img class="avatar" src="<%= comment.user.image %>" alt="Image">
                   </figure>
                 </div>
                 <div class="media-content">

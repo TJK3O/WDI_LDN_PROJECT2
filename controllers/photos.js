@@ -1,7 +1,8 @@
 const Photo = require('../models/photo');
 
 function indexRoute(req, res) {
-  Photo.find()
+  Photo.find(req.query)
+    .populate('user')
     .then(photos => res.render('photos/index', { photos }))
     .catch(err => console.log(err));
 }
@@ -12,6 +13,7 @@ function newRoute(req, res) {
 
 function createRoute(req, res, next) {
   console.log(req.body);
+  req.body.user = req.currentUser;
   Photo.create(req.body)
     .then(() => res.redirect('/photos'))
     .catch(next);
@@ -20,6 +22,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   Photo.findById(req.params.id)
     .populate('comments.user')
+    .populate('user')
     .then(photo => {
       res.render('photos/show', { photo });
     })

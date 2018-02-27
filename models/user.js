@@ -5,7 +5,8 @@ const schema = new mongoose.Schema({
   username: String,
   email: String,
   image: String,
-  password: String
+  password: String,
+  bio: String
 });
 
 // set up the passwordConfirmation virtual
@@ -43,5 +44,10 @@ schema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
+schema.virtual('photos', {
+  ref: 'Photo',
+  localField: '_id',
+  foreignField: 'user'
+});
 
 module.exports = mongoose.model('User', schema);
