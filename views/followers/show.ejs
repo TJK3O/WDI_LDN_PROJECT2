@@ -4,22 +4,21 @@
       <% user.followedUsersPics.forEach(photo => { %>
         <div class="column is-one-quarter-desktop is-half-tablet">
             <div class="card">
-              <div class="card-image">
-                <figure class="image">
-                  <img src="<%= photo.image %>" alt="<%= photo.description %>">
-                </figure>
-              </div>
-              <div class="card-content">
-                <p><%= photo.description %></p>
+            <figure class="image image-container">
+              <div class="image-overlay-text">
+                <h3 class="image-overlay-header"><%= photo.description %></h3>
                 <% if (photo.user) { %>
-                  <p>Uploaded by <a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a></p>
+                  <p>Uploaded by<a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a></p>
                 <% } %>
               </div>
-            </div>
+              <a href ="/photos/<%= photo._id%>">
+                <img class="hoverable-image" src="<%= photo.image %>" alt="<%= photo.description %>">
+              </a>
+            </figure>
         </div>
       <% }) %>
     <% } else { %>
-      <h1>Nothing to see here. Check out the explore tab ^</h1>
+      <h1 class="is-size-1">You are not following anyone just yet. Head to the explore tab to find more.</h1>
     <% } %>
   </div>
 </main>

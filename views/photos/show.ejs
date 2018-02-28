@@ -1,11 +1,11 @@
-<div class="container">
+<main class="container">
   <div class="columns">
     <div class="column">
       <figure class="image">
         <img src="<%= photo.image %>" alt="<%= photo.description %>">
       </figure>
     </div>
-    <div class="column">
+    <div class="column image-show-card">
       <h1 class="title"><%= photo.description %></h1>
       <% if (photo.user) { %>
         <h3>Uploaded by <a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a></h3>
@@ -14,12 +14,6 @@
         <% photo.comments.forEach(comment => { %>
           <div class="box">
             <li>
-              <% if(comment.isOwnedBy(locals.currentUser)) { %>
-                <form method="POST" action="/photos/<%= photo._id %>/comments/<%= comment._id %>">
-                <input type="hidden" name="_method" value="DELETE">
-                <button>Delete</button>
-                </form>
-              <% } %>
               <article class="media">
                 <div class="media-left">
                   <figure class="image is-64x64">
@@ -36,6 +30,12 @@
                         <strong><%= comment.user.username %></strong>
                       </a>
                     <% } %>
+                    <% if(comment.isOwnedBy(locals.currentUser)) { %>
+                      <form method="POST" action="/photos/<%= photo._id %>/comments/<%= comment._id %>">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <button class="comments-delete-button">X</button>
+                      </form>
+                      <% } %>
                   </div>
                 </div>
               </article>
@@ -44,9 +44,9 @@
         <% }) %>
       </ul>
 
-          <% if(locals.isAuthenticated) { %>
+          <% if(photo.user.username === locals.currentUser.username) { %>
             <a href="/photos/<%= photo._id %>/edit" class="button is-primary">Edit</a>
-
+          <% } %>
 
             <form method="POST" action="/photos/<%= photo._id %>">
             <input type="hidden" name="_method" value="DELETE">
@@ -70,9 +70,8 @@
                 <button class="like button is-primary">Like</button>
               </form>
             <% } %>
-
-            <% } %>
-      <p>Number of likes: <strong><%= photo.likes.length %></strong></p>
+            <p>Number of likes: <strong><%= photo.likes.length %></strong></p>
+      </div>
     </div>
   </div>
-</div>
+</main>

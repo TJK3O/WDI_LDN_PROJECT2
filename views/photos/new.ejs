@@ -1,4 +1,4 @@
-<div class="container">
+<main class="container">
   <form method="POST" action="/photos">
     <div class="field">
       <div class="image-preview" type="BUTTON" value="Upload Image" id="pickWatermark" onclick="filestackUpload()">
@@ -29,6 +29,7 @@
              console.log(fileUrl);
              $('#url-input').val(fileUrl);
              $('#temp_image').attr('src', fileUrl);
+             $('.image-preview-text').hide();
              $('#temp_image').css('visibility', 'visible');
            });
       };
@@ -45,4 +46,4 @@
       <button class="button is-primary">Submit</button>
     </div>
   </form>
-</div>
+</main>

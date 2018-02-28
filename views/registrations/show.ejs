@@ -5,47 +5,46 @@
         <div class="column">
           <img class="avatar" src="<%= user.image %>" alt="user.username">
         </div>
-        <div class="column is-three-quarters">
-          <h1 class="title">
+        <div class="column is-three-quarters user-info-sheet">
+          <h1 class="title is-size-1">
             <%= user.username %>
-            <%= user.bio %>
-            <% if(locals.isAuthenticated) { %>
-              <a href="/users/<%= locals.currentUser._id %>/edit">Edit Profile</a>
-            <% } %>
           </h1>
+          <h2>
+            <%= user.bio %>
+          </h2>
+          <% if(locals.currentUser.username === user.username) { %>
+            <a href="/users/<%= locals.currentUser._id %>/edit">Edit Profile</a>
+          <% } %>
+          <% if (locals.isAuthenticated && locals.currentUser.followedUsers.some(followedUser => followedUser.equals(user))) { %>
+              <form method="POST" action="/users/<%= user._id %>/follow/:followedUser._id">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="button is-danger follow-button" name="user" value="<%- user._id %>">Un-follow</button>
+              </form>
+          <% } else { %>
+            <form method="POST" action="/users/<%= user._id %>/follow">
+              <button class="button is-primary follow-button" name="user" value="<%- user._id %>">Follow</button>
+            </form>
+          <% } %>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<form method="POST" action="/users/<%= user._id %>/follow/:followedUser._id">
-  <input type="hidden" name="_method" value="DELETE">
-  <button class="button is-primary" name="user" value="<%- user._id %>">Un-follow</button>
-</form>
-
-<form method="POST" action="/users/<%= user._id %>/follow">
-  <button class="button is-primary" name="user" value="<%- user._id %>">Follow</button>
-</form>
-
+<hr class="horizontal-rule">
 
 <main class="container">
   <div class="columns is-multiline">
     <% user.photos.forEach(photo => { %>
       <div class="column is-one-quarter-desktop is-half-tablet">
+      <figure class="image image-container">
+      <div class="image-overlay-text">
+        <h3 class="image-overlay-header"><%= photo.description %></h3>
+      </div>
         <a href ="/photos/<%= photo._id%>">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image">
-                <img src="<%= photo.image %>" alt="<%= photo.description %>">
-              </figure>
-            </div>
-            <div class="card-content">
-              <p><%= photo.description %></p>
-              <p>Uploaded by <%= photo.user.username %></p>
-            </div>
-          </div>
+          <img class="hoverable-image" src="<%= photo.image %>" alt="<%= photo.description %>">
         </a>
+        </figure>
       </div>
     <% }) %>
   </div>

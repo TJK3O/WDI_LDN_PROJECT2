@@ -1,9 +1,21 @@
 body {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   background-color: #F3F1F1;
 }
 
-main.container {
+hr.horizontal-rule {
+  margin-top: 0;
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8c8c inset;
+}
+
+.hero-body {
+  background-color: #fff;
+}
+
+main.container  {
   margin-top: 10vh;
 }
 
@@ -36,10 +48,42 @@ div.homepage-right-column {
   padding: 30px 20px;
 }
 
+.image-show-card {
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+div.box {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.button, .textarea {
+  margin-bottom: 20px;
+}
+
+.comments-delete-button {
+  padding: 5px 5px;
+  border: 3px solid grey;
+  border-radius: 50%;
+  line-height: 0.6em;
+  background-color: white;
+  color: grey;
+  font-weight: 800;
+  float: right;
+}
+
+.comments-delete-button:hover {
+  background-color: grey;
+  color: white;
+  border: 3px solid grey;
+  cursor: pointer;
+}
+
 .navbar-brand {
   position: absolute;
   float: left;
-  width: 65px;
+  width: 50px;
 }
 
 div.column {
@@ -52,6 +96,15 @@ div.column {
 
 .avatar {
   border-radius: 50%;
+}
+
+.user-info-sheet {
+  background-color: #fff;
+}
+
+.follow-button {
+  margin: 20px auto;
+  vertical-align: bottom;
 }
 
 .image-preview {
@@ -74,8 +127,13 @@ div.column {
 }
 
 #temp_image {
+  position: relative;
   width: 100%;
   visibility: hidden;
+}
+
+.image-container {
+  background-color: #fff;
 }
 
 .image-overlay-text {
