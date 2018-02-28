@@ -1,0 +1,25 @@
+<main class="container">
+  <div class="columns is-multiline">
+    <% if (user.followedUsersPics) { %>
+      <% user.followedUsersPics.forEach(photo => { %>
+        <div class="column is-one-quarter-desktop is-half-tablet">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image">
+                  <img src="<%= photo.image %>" alt="<%= photo.description %>">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p><%= photo.description %></p>
+                <% if (photo.user) { %>
+                  <p>Uploaded by <a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a></p>
+                <% } %>
+              </div>
+            </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <h1>Nothing to see here. Check out the explore tab ^</h1>
+    <% } %>
+  </div>
+</main>

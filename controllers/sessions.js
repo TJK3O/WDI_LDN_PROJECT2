@@ -15,7 +15,7 @@ function sessionsCreate(req, res, next) {
       }
       req.session.userId = user._id;
       req.flash('info', `Welcome back, ${user.username}!`);
-      res.redirect('/'); // otherwise send them to the homepage
+      res.redirect('/following'); // otherwise send them to the homepage
     })
     .catch(next);
 }

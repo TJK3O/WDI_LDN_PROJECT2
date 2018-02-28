@@ -2,19 +2,23 @@
   <div class="columns is-multiline">
     <% photos.forEach(photo => { %>
       <div class="column is-one-quarter-desktop is-half-tablet">
-        <a href ="/photos/<%= photo._id%>">
           <div class="card">
             <div class="card-image">
               <figure class="image">
-                <img src="<%= photo.image %>" alt="<%= photo.description %>">
+                <a href ="/photos/<%= photo._id%>">
+                  <img src="<%= photo.image %>" alt="<%= photo.description %>">
+                </a>
               </figure>
             </div>
             <div class="card-content">
               <p><%= photo.description %></p>
-              <p>Uploaded by <%= photo.user.username %></p>
+              <% if (photo.user) { %>
+              <p>Uploaded by
+                <a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a>
+              </p>
+              <% } %>
             </div>
           </div>
-        </a>
       </div>
     <% }) %>
   </div>

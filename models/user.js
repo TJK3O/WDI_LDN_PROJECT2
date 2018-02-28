@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const followSchema = new mongoose.Schema({
+  user: {type: mongoose.Schema.ObjectId, ref: 'User'}
+});
+
 const schema = new mongoose.Schema({
   username: String,
   email: String,
   image: String,
   password: String,
-  bio: String
+  bio: String,
+  followedUsers: [ followSchema ]
 });
 
 // set up the passwordConfirmation virtual
@@ -47,6 +52,12 @@ schema.methods.validatePassword = function validatePassword(password) {
 schema.virtual('photos', {
   ref: 'Photo',
   localField: '_id',
+  foreignField: 'user'
+});
+
+schema.virtual('followedUsersPics', {
+  ref: 'Photo',
+  localField: 'followedUsers._id',
   foreignField: 'user'
 });
 

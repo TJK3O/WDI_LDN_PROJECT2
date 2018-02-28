@@ -15,6 +15,26 @@ div.column {
   border-radius: 50%;
 }
 
-.mySlides {display:none}
-.w3-left, .w3-right, .w3-badge {cursor:pointer}
-.w3-badge {height:13px;width:13px;padding:0}
+.image-preview {
+  height: 200px;
+  width: 200px;
+  border: 2px solid grey;
+  border-style: dashed;
+}
+
+.image-preview:hover {
+  cursor: pointer;
+  background-color: #ccc;
+  color: white;
+}
+
+.image-preview-text {
+  line-height: 12em;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#temp_image {
+  width: 100%;
+  visibility: hidden;
+}

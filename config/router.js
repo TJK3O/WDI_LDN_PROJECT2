@@ -51,6 +51,15 @@ router.route('/users/:id')
 router.route('/users/:id/edit')
   .get(secureRoute, registrations.edit);
 
+router.route('/users/:id/follow')
+  .post(secureRoute, registrations.followersCreate);
+
+router.route('/users/:id/follow/:followingId')
+  .delete(secureRoute, registrations.followersDelete);
+
+router.route('/following')
+  .get(secureRoute, registrations.followersShow);
+
 router.all('/*', (req, res) => res.render('pages/404'));
 
 module.exports = router;

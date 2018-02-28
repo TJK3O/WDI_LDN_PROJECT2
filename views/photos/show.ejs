@@ -7,7 +7,9 @@
     </div>
     <div class="column">
       <h1 class="title"><%= photo.description %></h1>
-      <h3>Uploaded by <%= photo.user.username %></h3>
+      <% if (photo.user) { %>
+        <h3>Uploaded by <a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a></h3>
+      <% } %>
       <ul>
         <% photo.comments.forEach(comment => { %>
           <div class="box">
@@ -30,7 +32,9 @@
                       <%= comment.content %>
                     </p>
                     <% if(comment.user) { %>
-                      <strong><%= comment.user.username %></strong>
+                      <a href="/users/<%= comment.user._id %>">
+                        <strong><%= comment.user.username %></strong>
+                      </a>
                     <% } %>
                   </div>
                 </div>

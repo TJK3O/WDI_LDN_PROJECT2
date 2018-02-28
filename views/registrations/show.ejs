@@ -19,6 +19,15 @@
   </div>
 </section>
 
+<form method="POST" action="/users/<%= user._id %>/follow/:followedUser._id">
+  <input type="hidden" name="_method" value="DELETE">
+  <button class="button is-primary" name="user" value="<%- user._id %>">Un-follow</button>
+</form>
+
+<form method="POST" action="/users/<%= user._id %>/follow">
+  <button class="button is-primary" name="user" value="<%- user._id %>">Follow</button>
+</form>
+
 
 <main class="container">
   <div class="columns is-multiline">
