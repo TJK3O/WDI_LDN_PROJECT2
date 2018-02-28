@@ -1,6 +1,45 @@
-.navbar-logo {
-  height: 50px;
-  width: auto;
+body {
+  height: 100vh;
+  background-color: #F3F1F1;
+}
+
+main.container {
+  margin-top: 10vh;
+}
+
+div.notification {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Homepage styles */
+.homepage-login {
+  margin-top: 10px;
+}
+
+.homepage-iphone {
+  display: block;
+  width: 350px;
+  height: 550px;
+  margin: auto;
+}
+
+.tomstagram-logo {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+}
+
+div.homepage-right-column {
+  background-color: #fff;
+  padding: 30px 20px;
+}
+
+.navbar-brand {
+  position: absolute;
+  float: left;
+  width: 65px;
 }
 
 div.column {
@@ -37,4 +76,66 @@ div.column {
 #temp_image {
   width: 100%;
   visibility: hidden;
+}
+
+.image-overlay-text {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+}
+
+.image-overlay-text p {
+  text-align: center;
+  line-height: 5em;
+}
+
+.image-overlay-header {
+  font-size: 30px;
+  text-align: center;
+  line-height: 5em;
+}
+
+.image-container:hover .image-overlay-text {
+  opacity: 1;
+}
+
+.image-container:hover .hoverable-image {
+  opacity: 0.2;
+}
+
+.container.homepage {
+  padding-top: 10vh;
+}
+
+@media (max-width: 1066px) {
+	.container.homepage {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+  main.container {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+}
+
+@media (max-width: 1006px) {
+  .image-overlay-text {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    opacity: 1;
+    text-align: center;
+    line-height: 20em;
+  }
+  .image-overlay-text p {
+    text-align: center;
+    line-height: 2em;
+  }
+}
+
+@media (max-width: 768px) {
+	.homepage-iphone {
+    display: none;
+  }
 }

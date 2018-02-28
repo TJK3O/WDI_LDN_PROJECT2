@@ -1,13 +1,19 @@
-<div class="container">
-  <form method="POST" action="/login">
-    <div class="field">
-      <label for="email">Email</label>
-      <input class="input" type="text" name="email" id="email">
+<div class="container homepage">
+  <div class="columns">
+    <div class="column is-two-thirds">
+      <img class="homepage-iphone" src="/images/Homepage-iphone.png" alt="Homepage-iphone">
     </div>
-    <div class="field">
-      <label for="password">Password</label>
-      <input class="input" type="password" name="password" id="password">
+    <div class="column homepage-right-column">
+        <img class="tomstagram-logo" src="/images/tomstagram_logo.png" alt="Tomstagram logo">
+        <p>Please enter your email address and password.</p>
+        <form method="POST" action="/login">
+          <div class="field">
+            <input class="input" type="text" name="email" id="email" placeholder="Email address">
+          </div>
+          <div class="field">
+            <input class="input" type="password" name="password" id="password" placeholder="Password">
+          </div>
+          <button class="button">Login</button>
+        </form>
     </div>
-    <button class="button">Login</button>
-  </form>
 </div>

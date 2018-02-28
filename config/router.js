@@ -4,7 +4,13 @@ const registrations = require('../controllers/registrations');
 const sessions = require('../controllers/sessions');
 const secureRoute = require('../lib/secureRoute');
 
-router.get('/', (req, res) => res.render('pages/home'));
+router.get('/', (req, res) => {
+  if(!req.currentUser) {
+    res.render('pages/home');
+  } else {
+    res.redirect('/photos');
+  }
+});
 
 router.route('/photos')
   .get(photos.index)

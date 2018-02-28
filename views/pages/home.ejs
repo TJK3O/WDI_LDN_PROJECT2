@@ -1,23 +1,21 @@
-<div class="container">
+<div class="container homepage">
   <div class="columns">
     <div class="column is-two-thirds">
-      Tomstagram picture
+      <img class="homepage-iphone" src="/images/Homepage-iphone.png" alt="Homepage-iphone">
     </div>
-    <div class="column">
-      <h1>Register</h1>
+    <div class="column homepage-right-column">
+      <img class="tomstagram-logo" src="/images/tomstagram_logo.png" alt="Tomstagram logo">
+      <h1>Sign up to find and share great photos.</h1>
         <form method="POST" action="/register">
           <div class="field">
-            <label for="username">Username</label>
-            <input class="input" type="text" name="username" id="username">
+            <input class="input" type="text" name="username" id="username" placeholder="Username">
           </div>
           <div class="field">
-            <label for="email">Email</label>
-            <input class="input" type="text" name="email" id="email">
+            <input class="input" type="text" name="email" id="email" placeholder="Email address">
           </div>
           <div class="field">
-            <label for="image">Image</label>
             <input class="input" type="hidden" name="image" id="url-input">
-            <input type="BUTTON" value="Upload Image" id="pickWatermark" onclick="filestackUpload()">
+            <input class="button" type="BUTTON" value="Upload profile picture" id="pickWatermark" onclick="filestackUpload()">
           </div>
 
           <script>
@@ -45,17 +43,15 @@
             <input class="input" type="password" name="password" id="password">
           </div>
           <div class="field">
-            <label for="passwordConfirmation">Password Confirmation</label>
-            <input class="input" type="password" name="passwordConfirmation" id="passwordConfirmation">
+            <input class="input" type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Password Confirmation">
           </div>
           <div class="field">
-            <label for="bio">Bio</label>
-            <input class="textarea" type="text" name="bio" id="bio">
+            <input class="textarea" type="text" name="bio" id="bio" placeholder="Bio">
           </div>
           <button class="button">Register</button>
         </form>
-        <h1>Have an account? <a href="/login">Log in</a></h1>
-        </div>
+        <h1 class="homepage-login">Have an account? <a href="/login">Log in</a></h1>
+      </div>
 
     </div>
 </div>

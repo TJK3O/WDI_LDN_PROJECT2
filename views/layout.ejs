@@ -17,7 +17,7 @@
   <body>
     <% for (const type in messages) { %>
       <div class="notification is-<%= type %>"><%= messages[type] %></div>
-    <% } %>
+      <% } %>
     <% if(locals.isAuthenticated) { %>
       <% include ./partials/_navbar %>
     <% } %>

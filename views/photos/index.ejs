@@ -3,21 +3,19 @@
     <% photos.forEach(photo => { %>
       <div class="column is-one-quarter-desktop is-half-tablet">
           <div class="card">
-            <div class="card-image">
-              <figure class="image">
+              <figure class="image image-container">
+                <div class="image-overlay-text">
+                  <h3 class="image-overlay-header"><%= photo.description %></h3>
+                  <% if (photo.user) { %>
+                    <p>Uploaded by
+                    <a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a>
+                    </p>
+                  <% } %>
+                </div>
                 <a href ="/photos/<%= photo._id%>">
-                  <img src="<%= photo.image %>" alt="<%= photo.description %>">
+                  <img class="hoverable-image" src="<%= photo.image %>" alt="<%= photo.description %>">
                 </a>
               </figure>
-            </div>
-            <div class="card-content">
-              <p><%= photo.description %></p>
-              <% if (photo.user) { %>
-              <p>Uploaded by
-                <a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a>
-              </p>
-              <% } %>
-            </div>
           </div>
       </div>
     <% }) %>
