@@ -12,18 +12,20 @@
           <h2>
             <%= user.bio %>
           </h2>
-          <% if(locals.currentUser.username === user.username) { %>
-            <a href="/users/<%= locals.currentUser._id %>/edit">Edit Profile</a>
-          <% } %>
-          <% if (locals.isAuthenticated && locals.currentUser.followedUsers.some(followedUser => followedUser.equals(user))) { %>
-              <form method="POST" action="/users/<%= user._id %>/follow/:followedUser._id">
-                <input type="hidden" name="_method" value="DELETE">
-                <button class="button is-danger follow-button" name="user" value="<%- user._id %>">Un-follow</button>
+          <% if(locals.isAuthenticated) { %>
+            <% if(locals.currentUser.username === user.username) { %>
+              <a href="/users/<%= locals.currentUser._id %>/edit">Edit Profile</a>
+              <% } %>
+            <% if (locals.currentUser.isFollowing(user)) { %>
+                <form method="POST" action="/users/<%= user._id %>/follow %>">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button class="button is-danger follow-button">Un-follow</button>
+                </form>
+            <% } else { %>
+              <form method="POST" action="/users/<%= user._id %>/follow">
+                <button class="button is-primary follow-button">Follow</button>
               </form>
-          <% } else { %>
-            <form method="POST" action="/users/<%= user._id %>/follow">
-              <button class="button is-primary follow-button" name="user" value="<%- user._id %>">Follow</button>
-            </form>
+            <% } %>
           <% } %>
         </div>
       </div>

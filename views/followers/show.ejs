@@ -1,20 +1,21 @@
 <main class="container">
   <div class="columns is-multiline">
     <% if (user.followedUsersPics) { %>
-      <% user.followedUsersPics.forEach(photo => { %>
+      <% user.followedUsersPics.forEach((photo, index) => { %>
         <div class="column is-one-quarter-desktop is-half-tablet">
-            <div class="card">
+          <div class="card">
             <figure class="image image-container">
               <div class="image-overlay-text">
                 <h3 class="image-overlay-header"><%= photo.description %></h3>
                 <% if (photo.user) { %>
-                  <p>Uploaded by<a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a></p>
+                  <p>Uploaded by <a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a></p>
                 <% } %>
               </div>
               <a href ="/photos/<%= photo._id%>">
                 <img class="hoverable-image" src="<%= photo.image %>" alt="<%= photo.description %>">
               </a>
             </figure>
+          </div>
         </div>
       <% }) %>
     <% } else { %>

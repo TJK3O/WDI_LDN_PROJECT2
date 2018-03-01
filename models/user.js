@@ -1,17 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const followSchema = new mongoose.Schema({
-  user: {type: mongoose.Schema.ObjectId, ref: 'User'}
-});
-
 const schema = new mongoose.Schema({
   username: String,
   email: String,
   image: String,
   password: String,
   bio: String,
-  followedUsers: [ followSchema ]
+  followedUsers: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
 // set up the passwordConfirmation virtual
@@ -49,6 +45,10 @@ schema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
+schema.methods.isFollowing = function isFollowing(user) {
+  return this.followedUsers.some(userId => userId.equals(user._id));
+};
+
 schema.virtual('photos', {
   ref: 'Photo',
   localField: '_id',
@@ -57,7 +57,7 @@ schema.virtual('photos', {
 
 schema.virtual('followedUsersPics', {
   ref: 'Photo',
-  localField: 'followedUsers._id',
+  localField: 'followedUsers',
   foreignField: 'user'
 });
 

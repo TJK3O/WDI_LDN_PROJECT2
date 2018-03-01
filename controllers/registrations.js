@@ -38,23 +38,18 @@ function updateRoute(req, res) {
 }
 
 function followersCreateRoute(req, res, next){
-  User.findById(req.currentUser)
-    .then(user => {
-      user.followedUsers.push(req.body.user);
-      return user.save();
-    })
-    .then(() => res.redirect(`/users/${req.body.user}`))
+  req.currentUser.followedUsers.push(req.params.id);
+  req.currentUser.save()
+    .then(() => res.redirect(`/users/${req.params.id}`))
     .catch(next);
 }
 
 function followersDeleteRoute(req, res, next){
-  User.findById(req.currentUser)
-    .then(user => {
-      const followedUser = user.followedUsers.id(req.body.user);
-      followedUser.remove();
-      return user.save();
-    })
-    .then(() => res.redirect(`/users/${req.body.user}`))
+  req.currentUser.followedUsers = req.currentUser.followedUsers.filter(userId => {
+    return !userId.equals(req.params.id);
+  });
+  req.currentUser.save()
+    .then(() => res.redirect(`/users/${req.params.id}`))
     .catch(next);
 }
 
@@ -68,6 +63,11 @@ function followersShowRoute(req,res,next) {
       }
     })
     .then(user => {
+
+      user.followedUsersPics = user.followedUsersPics.reduce((flattened, pics) => {
+        return flattened.concat(pics);
+      }, []);
+      // reduce, flatten and concatenate are being used to turn an array of both objects and arrays into a single array of objects
       res.render('followers/show', { user });
     })
     .catch(next);

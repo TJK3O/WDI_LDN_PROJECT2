@@ -7,42 +7,42 @@
     </div>
     <div class="column image-show-card">
       <h1 class="title"><%= photo.description %></h1>
-      <% if (photo.user) { %>
+      <% if (photo.user.username) { %>
         <h3>Uploaded by <a href="/users/<%= photo.user._id %>"><%= photo.user.username %></a></h3>
-      <% } %>
-      <ul>
+        <ul>
         <% photo.comments.forEach(comment => { %>
           <div class="box">
-            <li>
-              <article class="media">
-                <div class="media-left">
-                  <figure class="image is-64x64">
-                    <img class="avatar" src="<%= comment.user.image %>" alt="Image">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      <%= comment.content %>
-                    </p>
-                    <% if(comment.user) { %>
-                      <a href="/users/<%= comment.user._id %>">
-                        <strong><%= comment.user.username %></strong>
-                      </a>
-                    <% } %>
-                    <% if(comment.isOwnedBy(locals.currentUser)) { %>
-                      <form method="POST" action="/photos/<%= photo._id %>/comments/<%= comment._id %>">
-                      <input type="hidden" name="_method" value="DELETE">
-                      <button class="comments-delete-button">X</button>
-                      </form>
-                      <% } %>
-                  </div>
-                </div>
-              </article>
-            </li>
+          <li>
+          <article class="media">
+          <div class="media-left">
+          <figure class="image is-64x64">
+          <img class="avatar" src="<%= comment.user.image %>" alt="Image">
+          </figure>
           </div>
-        <% }) %>
-      </ul>
+          <div class="media-content">
+          <div class="content">
+          <p>
+          <%= comment.content %>
+          </p>
+          <% if(comment.user) { %>
+            <a href="/users/<%= comment.user._id %>">
+            <strong><%= comment.user.username %></strong>
+            </a>
+            <% } %>
+            <% if(comment.isOwnedBy(locals.currentUser)) { %>
+              <form method="POST" action="/photos/<%= photo._id %>/comments/<%= comment._id %>">
+              <input type="hidden" name="_method" value="DELETE">
+              <button class="comments-delete-button">X</button>
+              </form>
+              <% } %>
+              </div>
+              </div>
+              </article>
+              </li>
+              </div>
+              <% }) %>
+              </ul>
+      <% } %>
 
           <% if(photo.user.username === locals.currentUser.username) { %>
             <a href="/photos/<%= photo._id %>/edit" class="button is-primary">Edit</a>
