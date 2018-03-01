@@ -4,7 +4,7 @@ mongoose.Promise = require('bluebird');
 const User = require('../models/user');
 const userData = require('./data/users');
 
-mongoose.connect('mongodb://localhost/insta-database', (err, db) => {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/insta-database', (err, db) => {
   db.dropDatabase();
 
   User.create(userData)
