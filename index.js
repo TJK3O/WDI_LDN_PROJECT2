@@ -7,11 +7,11 @@ const methodOverride = require('method-override');
 const userAuth = require('./lib/userAuth');
 const flash = require('express-flash');
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 // link to db
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/insta-database');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/insta-database');
 
 app.use(express.static(`${__dirname}/public`));
 // set up express layouts

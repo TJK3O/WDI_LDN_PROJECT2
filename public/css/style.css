@@ -1,3 +1,5 @@
+/* Global styles */
+
 body {
   min-height: 100vh;
   height: 100%;
@@ -9,23 +11,27 @@ body.body {
 }
 
 body.body a {
-  color: dodgerBlue;
+  color: #1e90ff;
 }
 
 body.body button {
   border-radius: 0;
 }
 
+body.body button.comments-delete-button {
+  border-radius: 50%;
+}
+
 body.body a:hover {
-  color: lightblue;
+  color: #ADD8E6;
 }
 
 body.body .is-danger {
-  background-color: red;
+  background-color: #ff0000;
 }
 
 body.body .is-primary {
-  background-color: green;
+  background-color: #00ff00;
 }
 
 body.body .is-danger:hover {
@@ -43,6 +49,14 @@ hr.horizontal-rule {
   box-shadow: 0 10px 10px -10px #8c8c8c inset;
 }
 
+div.notification {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Show pages */
+
 .hero-body {
   background-color: #fff;
 }
@@ -51,13 +65,8 @@ main.container  {
   margin-top: 10vh;
 }
 
-div.notification {
-  position: absolute;
-  width: 100%;
-  z-index: 1;
-}
-
 /* Homepage styles */
+
 .homepage-login {
   margin-top: 10px;
 }
@@ -90,27 +99,46 @@ div.box {
   box-shadow: none;
 }
 
+div.column {
+  padding-bottom: 50px;
+}
+
 .button, .textarea {
   margin-bottom: 20px;
 }
 
 .comments-delete-button {
   padding: 5px 5px;
-  border: 3px solid grey;
+  border: 3px solid #808080;
   border-radius: 50%;
   line-height: 0.6em;
-  background-color: white;
-  color: grey;
+  background-color: #fff;
+  color: #808080;
   font-weight: 800;
   float: right;
 }
 
 .comments-delete-button:hover {
-  background-color: grey;
-  color: white;
-  border: 3px solid grey;
+  background-color: #808080;
+  color: #fff;
+  border: 3px solid #808080;
   cursor: pointer;
 }
+
+.like, .unlike {
+  display: hidden;
+}
+
+.container.homepage {
+  padding-top: 10vh;
+}
+
+.not-following-text {
+  margin-top: 50px;
+  text-align: center;
+}
+
+/* Navbar styling */
 
 .navbar-brand {
   position: absolute;
@@ -119,20 +147,13 @@ div.box {
 }
 
 .navbar-item {
-  border-bottom: 4px solid white;
+  border-bottom: 4px solid #fff;
 }
 .navbar-item:hover {
-  border-bottom: 4px solid lightblue;
-}
-/* .navbar-brand #insta-logo {} */
-
-div.column {
-  padding-bottom: 50px;
+  border-bottom: 4px solid #ADD8E6;
 }
 
-.like, .unlike {
-  display: hidden;
-}
+/* Profile styling */
 
 .avatar {
   border-radius: 50%;
@@ -147,17 +168,19 @@ div.column {
   vertical-align: bottom;
 }
 
+/* Image styling */
+
 .image-preview {
   height: 200px;
   width: 200px;
-  border: 2px solid grey;
+  border: 2px solid #808080;
   border-style: dashed;
 }
 
 .image-preview:hover {
   cursor: pointer;
   background-color: #ccc;
-  color: white;
+  color: #fff;
 }
 
 .image-preview-text {
@@ -202,9 +225,7 @@ div.column {
   opacity: 0.2;
 }
 
-.container.homepage {
-  padding-top: 10vh;
-}
+/* Esplore page */
 
 .compass {
   width: 250px;
@@ -212,10 +233,7 @@ div.column {
   margin: 0 auto;
 }
 
-.not-following-text {
-  margin-top: 50px;
-  text-align: center;
-}
+/* Responsive styling */
 
 @media (max-width: 1066px) {
 	.container.homepage {

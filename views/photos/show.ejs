@@ -54,7 +54,7 @@
             </form>
 
             <form method="POST" action="/photos/<%= photo._id %>/comments">
-            <textarea class="textarea" name="content" required></textarea>
+            <textarea class="textarea" name="content" placeholder="Post a comment here..."required></textarea>
             <button class="button is-primary">Submit</button>
             </form>
 
@@ -62,12 +62,12 @@
 
               <form method="POST" action="/photos/<%= photo._id %>/likes/:like._id">
                 <input type="hidden" name="_method" value="DELETE">
-                <button class="unlike button is-danger">Unlike</button>
+                <button class="unlike button is-danger"><i class="fas fa-heart"></i></button>
               </form>
             <% } else { %>
 
               <form method="POST" action="/photos/<%= photo._id %>/likes">
-                <button class="like button is-primary">Like</button>
+                <button class="like button is-primary"><i class="far fa-heart"></i></button>
               </form>
             <% } %>
             <p>Number of likes: <strong><%= photo.likes.length %></strong></p>
