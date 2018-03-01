@@ -1,6 +1,6 @@
 <main class="container">
   <div class="columns is-multiline">
-    <% if (user.followedUsersPics) { %>
+    <% if (user.followedUsersPics && user.followedUsersPics.length > 0) { %>
       <% user.followedUsersPics.forEach((photo, index) => { %>
         <div class="column is-one-quarter-desktop is-half-tablet">
           <div class="card">
@@ -19,7 +19,8 @@
         </div>
       <% }) %>
     <% } else { %>
-      <h1 class="is-size-1">You are not following anyone just yet. Head to the explore tab to find more.</h1>
+      <img src="/images/compass.png" alt="compass" class="compass">
+      <h1 class="is-size-1 not-following-text">You are not following anyone just yet. Head to the Explore tab to find more.</h1>
     <% } %>
   </div>
 </main>

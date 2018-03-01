@@ -58,9 +58,7 @@ router.route('/users/:id/edit')
   .get(secureRoute, registrations.edit);
 
 router.route('/users/:id/follow')
-  .post(secureRoute, registrations.followersCreate);
-
-router.route('/users/:id/follow/:followingId')
+  .post(secureRoute, registrations.followersCreate)
   .delete(secureRoute, registrations.followersDelete);
 
 router.route('/following')

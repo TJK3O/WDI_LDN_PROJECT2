@@ -1,7 +1,39 @@
 body {
   min-height: 100vh;
   height: 100%;
-  background-color: #F3F1F1;
+  background:linear-gradient(#fff, #f0f0dc);
+}
+
+body.body {
+  font-family: 'Roboto', sans-serif;
+}
+
+body.body a {
+  color: dodgerBlue;
+}
+
+body.body button {
+  border-radius: 0;
+}
+
+body.body a:hover {
+  color: lightblue;
+}
+
+body.body .is-danger {
+  background-color: red;
+}
+
+body.body .is-primary {
+  background-color: green;
+}
+
+body.body .is-danger:hover {
+  background-color: #c81414;
+}
+
+body.body .is-primary:hover {
+  background-color: #6abe30;
 }
 
 hr.horizontal-rule {
@@ -85,6 +117,13 @@ div.box {
   float: left;
   width: 50px;
 }
+
+.navbar-item {
+  border-bottom: 4px solid white;
+}
+.navbar-item:hover {
+  border-bottom: 4px solid lightblue;
+}
 /* .navbar-brand #insta-logo {} */
 
 div.column {
@@ -167,6 +206,17 @@ div.column {
   padding-top: 10vh;
 }
 
+.compass {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.not-following-text {
+  margin-top: 50px;
+  text-align: center;
+}
+
 @media (max-width: 1066px) {
 	.container.homepage {
     margin-left: 5vw;
@@ -202,5 +252,17 @@ div.column {
   }
   .container.homepage {
     padding-top: 5vh;
+  }
+  .compass {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+  }
+  .avatar {
+    display: block;
+    width: 300px;
+    height: 300px;
+    margin: auto;
   }
 }

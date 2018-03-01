@@ -63,7 +63,7 @@ function followersShowRoute(req,res,next) {
       }
     })
     .then(user => {
-
+      user.followedUsersPics = user.followedUsersPics || [];
       user.followedUsersPics = user.followedUsersPics.reduce((flattened, pics) => {
         return flattened.concat(pics);
       }, []);
