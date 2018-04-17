@@ -38,6 +38,7 @@ router.route('/photos/:id/likes')
 
 router.route('/photos/:id/likes/:likeId')
   .delete(secureRoute, photos.likesDelete);
+  
 
 router.route('/register')
   .get(registrations.new)
