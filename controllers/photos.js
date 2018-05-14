@@ -1,3 +1,4 @@
+// This controller contains functions that help us execute our db requests. They execute a function on the request and then render the response. An error catcher stops the functions from hanging if there is a problem
 const Photo = require('../models/photo');
 
 function indexRoute(req, res) {
@@ -12,7 +13,7 @@ function newRoute(req, res) {
 }
 
 function createRoute(req, res, next) {
-  console.log(req.body);
+  // req.currentUser comes from the userAuth 
   req.body.user = req.currentUser;
   Photo.create(req.body)
     .then(() => res.redirect('/photos'))
@@ -84,6 +85,7 @@ function likesCreateRoute(req, res, next) {
     .catch(next);
 }
 
+// To delete your own like you can filter set the likes to be everything except your own like and then save the filtered results as the likes
 function likesDeleteRoute(req, res, next) {
   Photo.findById(req.params.id)
     .then(photo => {

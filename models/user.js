@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// bcrypt allows us to salt and hash our passwords
 const bcrypt = require('bcrypt');
 
 const schema = new mongoose.Schema({
@@ -45,20 +46,23 @@ schema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
+// isFollowing checks whether any of this users followed users have the id supplied in the request
 schema.methods.isFollowing = function isFollowing(user) {
   return this.followedUsers.some(userId => userId.equals(user._id));
 };
 
+// This associates all the images that user uploaded with that user in the database via the 'user' field from the image model
 schema.virtual('photos', {
   ref: 'Photo',
   localField: '_id',
   foreignField: 'user'
 });
 
+// This associates all of the images that were uploaded by the user's that any given user is following. if i was following another user, this finds all the images they uploaded using the 'user' field on the photo model and assoctiates them with my user in the database
 schema.virtual('followedUsersPics', {
-  ref: 'Photo',
-  localField: 'followedUsers',
-  foreignField: 'user'
+  ref: 'Photo', // the model to use
+  localField: 'followedUsers', // me
+  foreignField: 'user' // them
 });
 
 module.exports = mongoose.model('User', schema);

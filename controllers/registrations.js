@@ -1,3 +1,4 @@
+// The registrations controller contains functions for creating, showing, editing etc a user and following/unfollowing a user
 const User = require('../models/user');
 
 function newRoute(req, res) {
@@ -44,6 +45,7 @@ function followersCreateRoute(req, res, next){
     .catch(next);
 }
 
+// To delete a followed user, we request all followed users, then filter by every user except the req.params.id (user whose page we are currently on) and saving this as users
 function followersDeleteRoute(req, res, next){
   req.currentUser.followedUsers = req.currentUser.followedUsers.filter(userId => {
     return !userId.equals(req.params.id);
@@ -55,6 +57,7 @@ function followersDeleteRoute(req, res, next){
 
 function followersShowRoute(req,res,next) {
   User.findById(req.currentUser)
+  // We can populate just the specific parts of the record we are after so that the response is lighter - we don't need the whole user record to show what users they are following
     .populate({
       path: 'followedUsersPics',
       populate: {
@@ -63,6 +66,7 @@ function followersShowRoute(req,res,next) {
       }
     })
     .then(user => {
+      // If the followed user doesn't have any pics then we will set it to an empty array to avoid an error
       user.followedUsersPics = user.followedUsersPics || [];
       user.followedUsersPics = user.followedUsersPics.reduce((flattened, pics) => {
         return flattened.concat(pics);
@@ -72,10 +76,6 @@ function followersShowRoute(req,res,next) {
     })
     .catch(next);
 }
-
-
-
-
 
 module.exports = {
   new: newRoute,

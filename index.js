@@ -1,8 +1,11 @@
 const express = require('express');
+// Enables EJS templating
 const expressLayouts = require('express-ejs-layouts');
+// Enables session authentication using cookies
 const expressSession = require('express-session');
 const router = require('./config/router');
 const bodyParser = require('body-parser');
+// Forms can only be send as GET or POST so we use method-override to allow PUT, DELETE etc.
 const methodOverride = require('method-override');
 const userAuth = require('./lib/userAuth');
 const flash = require('express-flash');
@@ -13,6 +16,7 @@ const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/insta-database');
 
+// This tells our app where to look or static files like js, css, etc.
 app.use(express.static(`${__dirname}/public`));
 // set up express layouts
 app.set('view engine', 'ejs');

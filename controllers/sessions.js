@@ -1,3 +1,4 @@
+// The sessions controller contains functions for logging a user in and out using session cookies
 const User = require('../models/user');
 
 function newRoute(req, res) {
@@ -21,6 +22,7 @@ function sessionsCreate(req, res, next) {
 }
 
 function sessionsDelete(req, res) {
+  // regenerate completely clears the session, and as we pass no arguments it doesn't then create a new session. This logs the user out. We could also use regenerate to log a user in
   req.session.regenerate(() => res.redirect('/'));
 }
 

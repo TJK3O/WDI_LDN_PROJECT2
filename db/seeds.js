@@ -1,3 +1,4 @@
+// Running our seeds file will clear or 'drop' the db and then repopulate it using our User model and seeds file
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 

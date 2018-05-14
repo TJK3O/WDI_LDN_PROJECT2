@@ -1,4 +1,5 @@
 <div class="container">
+  <%# Forms can only be send as GET or POST so we use method-override in the index.js to enable a PUT in this case %>
   <form method="POST" action="/photos/<%= photo._id%>">
 
     <input type="hidden" name="_method" value="PUT">
@@ -14,6 +15,7 @@
 
 
       <script>
+      // The API key should be moved into the zsh file - we wouldn't upload this key but a new one
       const client = filestack.init("AaxOxD7SDQAiBsMXOqh3Iz");
       let watermarkHandle = '';
       let transformURL = "https://cdn.filestack.com/watermark=file:";
