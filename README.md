@@ -86,6 +86,10 @@ function userAuth(req, res, next) {
 
 </br>
 
+###### If a user is not authorized they will see a flash message like below telling them that they are not authorized. They will also be redirected to the login page.
+
+</br>
+
 <p align="center"><img src="https://i.imgur.com/WB5Ha8Y.png" width="700"></p>
 
 </br>
