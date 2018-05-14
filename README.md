@@ -1,8 +1,8 @@
-# ![image](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) WDI_LDN_PROJECT2
-
-Individual Express Web Application using EJS Templating
+# ![image](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)
 
 # GA WDI-32 Project 2 - Tomstagram EJS Web Application
+
+Individual Express Web Application using EJS Templating
 
 For my second project at General Assembly I opted to create an Instagram clone. Tomstagram mimics the functionality of instagram with registered users able to upload images, comment, and follow other users.
 
