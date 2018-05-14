@@ -31,6 +31,7 @@
             <% } %>
             <% if(comment.isOwnedBy(locals.currentUser)) { %>
               <form method="POST" action="/photos/<%= photo._id %>/comments/<%= comment._id %>">
+              // Forms can only be sent as GET or POST so we use method-override in the index.js to enable a DELETE in this case
               <input type="hidden" name="_method" value="DELETE">
               <button class="comments-delete-button">X</button>
               </form>
@@ -49,6 +50,7 @@
           <% } %>
 
             <form method="POST" action="/photos/<%= photo._id %>">
+              <%# Forms can only be sent as GET or POST so we use method-override in the index.js to enable a DELETE in this case %>
             <input type="hidden" name="_method" value="DELETE">
             <button class="button is-danger">Delete</button>
             </form>
@@ -61,6 +63,7 @@
             <% if(photo.isLikedBy(locals.currentUser)) { %>
 
               <form method="POST" action="/photos/<%= photo._id %>/likes/:like._id">
+              // Forms can only be sent as GET or POST so we use method-override in the index.js to enable a DELETE in this case
                 <input type="hidden" name="_method" value="DELETE">
                 <button class="unlike button is-danger"><i class="fas fa-heart"></i></button>
               </form>

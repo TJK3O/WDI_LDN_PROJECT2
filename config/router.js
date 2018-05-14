@@ -1,9 +1,15 @@
+// router allows us to send the user to a differnet route depending on the URL entered
 const router = require('express').Router();
+// The photos controller contains functions to help us find, create, show etc. our photos, comments, and likes
 const photos = require('../controllers/photos');
+// The registrations controller lets us create, and edit accounts and followers
 const registrations = require('../controllers/registrations');
+// The sessions controller lets us log in and out using session cookies
 const sessions = require('../controllers/sessions');
+// secureRoute checks the request has a userId (a user is logged in) and redirects them with a warning if not.
 const secureRoute = require('../lib/secureRoute');
 
+// If req.body doesn't contain a user send them home, else send them to photos index
 router.get('/', (req, res) => {
   if(!req.currentUser) {
     res.render('pages/home');
@@ -12,10 +18,12 @@ router.get('/', (req, res) => {
   }
 });
 
+// Each of these routes sends a request to our db using functions defined in the controller and authorisation defined in secureRoute.
 router.route('/photos')
   .get(photos.index)
   .post(secureRoute, photos.create);
 
+// The new route should sit above the /:id route so that 'new' isn't treated as an id
 router.route('/photos/new')
   .get(secureRoute, photos.new);
 
@@ -38,7 +46,7 @@ router.route('/photos/:id/likes')
 
 router.route('/photos/:id/likes/:likeId')
   .delete(secureRoute, photos.likesDelete);
-  
+
 
 router.route('/register')
   .get(registrations.new)

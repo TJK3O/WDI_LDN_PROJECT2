@@ -18,6 +18,7 @@
               <% } %>
             <% if (locals.currentUser.isFollowing(user)) { %>
                 <form method="POST" action="/users/<%= user._id %>/follow %>">
+                // Forms can only be sent as GET or POST so we use method-override in the index.js to enable a DELETE in this case
                   <input type="hidden" name="_method" value="DELETE">
                   <button class="button is-danger follow-button">Un-follow</button>
                 </form>
