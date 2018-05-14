@@ -37,7 +37,52 @@ It is a RESTful full stack application that makes use of EJS templating to chang
 
 </br>
 
-###### Certain routes are protected and users must register and login to access them. This works by storing a cookie in the users local storage using express-sessions.
+###### Certain routes are protected and users must register and login to access them. This works by storing a cookie in the users local storage using express-sessions. In the router we use the function below to determine whether a user is allowed to proceed:
+
+</br>
+
+```
+function secureRoute(req, res, next) {
+  if(!req.session.userId) {
+    return req.session.regenerate(() => {
+      req.flash('danger', 'You must be logged in.');
+      res.redirect('/login');
+    });
+  }
+
+  next();
+}
+```
+
+</br>
+
+###### In the index.js we use the following function. This is how we are able to determine whether a user is authorized:
+
+</br>
+
+```
+function userAuth(req, res, next) {
+  // if there is no user ID then there is nothing to do, move on to the routes
+  if(!req.session.userId) return next();
+
+  // otherwise use the ID to find the user in the database
+  User
+    .findById(req.session.userId)
+    .then(user => {
+      // if the user hasn't been found log them out (ie delete the data in the session)
+      if(!user) req.session.regenerate(() => res.redirect('/login'));
+      // add some helpers to res.locals to be used in the views
+      res.locals.isAuthenticated = true;
+      res.locals.currentUser = user;
+
+      // store the user data on 'req' to be used inside the controllers
+      req.currentUser = user;
+
+      next();
+
+    });
+}
+```
 
 </br>
 
